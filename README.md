@@ -18,6 +18,22 @@ Airbnb Clone Project is a full-stack learning project that simulates building a 
 - CI/CD: GitHub Actions (or equivalent)
 - Dev tools: Git, pytest (or Django tests)
 
+## Technology Stack
+
+- Django — A high-level Python web framework used to build the backend application, routing, models, and core business logic.
+- Django REST Framework — Adds tools for quickly building RESTful APIs, serialization, authentication, and viewsets.
+- GraphQL (e.g., Graphene) — Provides a flexible query layer for clients to request exactly the data they need, complementing or replacing REST endpoints.
+- PostgreSQL — Recommended production relational database for reliable transactions, advanced indexing, and complex queries (alternative: MySQL, used in some dev setups).
+- MySQL — Supported relational database option; can be used for development or deployments where MySQL is preferred.
+- Celery — Distributed task queue for handling asynchronous work such as email notifications, background processing, and payment tasks.
+- Redis — In-memory datastore used for caching, Celery broker/back-end, and fast session or rate-limit storage.
+- Docker — Containerization for consistent development and production environments, simplifying dependency management and deployment.
+- Git / GitHub — Version control and repository hosting; GitHub Actions for CI/CD automation (tests, linting, builds, and deployment).
+- pytest / Django tests — Test frameworks for unit and integration testing to ensure code quality and prevent regressions.
+- OpenAPI / Swagger — API documentation tooling to describe REST endpoints, request/response schemas, and make integration easier.
+- Nginx / Gunicorn (or uWSGI) — Recommended production web server and WSGI application server for serving the Django app behind a reverse proxy.
+- TLS / OAuth / JWT — Security components and protocols for secure transport (TLS) and authentication/authorization (OAuth2 or JWT tokens).
+
 ## Project Structure (suggested)
 - backend/        — Django app
 - db/             — DB schema & migrations
