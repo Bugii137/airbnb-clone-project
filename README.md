@@ -159,3 +159,39 @@ Notes / recommendations
 
 - Security & Compliance  
   Transport security (TLS), token-based auth (JWT/OAuth), input validation, and dependency scanning protect user data and the platform. Audit logs and role-based controls support compliance and incident response.
+
+## API Security
+
+Key security measures and why they matter:
+
+- Authentication  
+  Use JWT/OAuth2 with short-lived access tokens and refresh tokens. Proper authentication ensures only verified users can access protected endpoints and reduces account takeover risk.
+
+- Authorization & RBAC  
+  Enforce role-based access control and attribute-based checks at the API layer. Prevents privilege escalation and ensures users can only perform allowed actions (e.g., only owners can modify their listings).
+
+- Transport Security (TLS)  
+  Enforce HTTPS for all API traffic and redirect HTTP to HTTPS. Protects data in transit (credentials, PII, payment tokens) from eavesdropping and MITM attacks.
+
+- Input Validation & Output Encoding  
+  Validate and sanitize all client input and encode outputs to prevent SQL injection, XSS, and other injection attacks. Ensures backend integrity and protects downstream systems.
+
+- Rate Limiting & Throttling  
+  Apply per-user and per-IP rate limits and burst controls. Protects APIs from brute-force, scraping, and denial-of-service attempts and preserves service availability.
+
+- Payment Security & PCI Compliance  
+  Use tokenized payment flows (do not store raw card data) and integrate a PCI-compliant payment provider. Ensures secure handling of transactions and reduces liability.
+
+- Logging, Monitoring & Alerting  
+  Centralize logs, monitor for anomalies, and alert on suspicious activity (failed logins, repeated errors). Enables fast detection and response to incidents and supports audits.
+
+- Secrets Management & Dependency Controls  
+  Store secrets in a vault (e.g., HashiCorp Vault, GitHub Secrets) and scan dependencies for vulnerabilities. Prevents secret leakage and reduces risk from vulnerable libraries.
+
+- CSRF Protection, CORS, and Secure Headers  
+  Implement CSRF protections for stateful endpoints, configure CORS to allow only trusted origins, and set secure HTTP headers (HSTS, X-Content-Type-Options). Helps mitigate common web attack vectors.
+
+- Encryption at Rest & Backups  
+  Encrypt sensitive data at rest and ensure encrypted backups with access controls. Protects user and payment data in case of infrastructure compromise.
+
+These measures collectively protect user data, maintain trust, secure payment flows, and ensure platform availability and compliance.
