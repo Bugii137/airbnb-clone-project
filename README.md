@@ -195,3 +195,17 @@ Key security measures and why they matter:
   Encrypt sensitive data at rest and ensure encrypted backups with access controls. Protects user and payment data in case of infrastructure compromise.
 
 These measures collectively protect user data, maintain trust, secure payment flows, and ensure platform availability and compliance.
+
+## CI/CD Pipeline
+
+- What CI/CD is  
+  Continuous Integration (CI) automates building and testing code on every change to catch regressions early. Continuous Delivery/Deployment (CD) automates packaging and deploying validated builds to staging/production for fast, repeatable releases.
+
+- Why it matters  
+  CI/CD enforces consistent quality checks (linting, tests, security scans), reduces manual errors, speeds up feedback loops, and enables safe, frequent deployments with rollback capabilities.
+
+- Typical pipeline stages  
+  Lint → Unit/Integration tests → Build (Docker image) → Push image to registry → Run DB migrations → Deploy to staging → Run end-to-end checks → Promote to production.
+
+- Tools to use  
+  GitHub Actions (CI), Docker / Docker Hub or GitHub Container Registry (images), Docker Compose / Kubernetes + Helm (runtime), Terraform / Ansible (infrastructure provisioning), GitHub Secrets or a vault for credentials, and monitoring tools (Sentry, Prometheus) for post-deploy observability.
