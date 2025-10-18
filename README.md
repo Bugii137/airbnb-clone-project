@@ -130,3 +130,32 @@ Notes / recommendations
 - Constraints: enforce FK constraints and use transactions for booking/payment workflows to maintain consistency.
 - Normalization: keep address components and amenity list normalized (separate tables) if needed for queries and reuse.
 - Soft deletes & audit: consider soft-delete flags and created/updated timestamps for auditability.
+
+## Feature Breakdown
+
+- API Documentation  
+  Comprehensive API docs (OpenAPI/Swagger) and GraphQL schema provide clear contracts for frontend and third-party integrations. This ensures developers can discover endpoints, understand request/response formats, and test APIs quickly.
+
+- User Management  
+  Registration, login, profile management, and role-based access control enable secure user interactions. Proper authentication and validation protect user data and support different user types (guests, hosts, admins).
+
+- Property Management  
+  CRUD operations for listings, images, amenities, and availability management allow hosts to publish and update properties. Rich property metadata and search filters improve discoverability for guests.
+
+- Booking System  
+  Create, update, and manage reservations with availability checks, pricing calculations, and status workflows (pending/confirmed/cancelled). Transactional booking flows ensure consistency between availability and payments.
+
+- Payment Processing  
+  Integrates with external payment providers to charge guests, issue refunds, and record transactions. Secure handling of payment data, idempotent operations, and reconciliation records are included for reliability.
+
+- Review System  
+  Guests can leave ratings and comments for properties, while hosts can respond to feedback. Aggregated ratings and review moderation help maintain listing quality and trust.
+
+- Notifications & Background Tasks  
+  Asynchronous tasks (Celery) handle emails, push notifications, and long-running jobs without blocking request processing. This improves responsiveness and enables retryable background workflows.
+
+- Search, Caching & Optimization  
+  Full-text search, indexing, and Redis caching speed up property queries and frequently accessed data. Combined with DB indexes and query optimization, this reduces latency under load.
+
+- Security & Compliance  
+  Transport security (TLS), token-based auth (JWT/OAuth), input validation, and dependency scanning protect user data and the platform. Audit logs and role-based controls support compliance and incident response.
