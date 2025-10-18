@@ -74,3 +74,59 @@ cd airbnb-clone-project
 
 - UX Designer  
   Designs user flows, wireframes, and interaction patterns to ensure the product is intuitive, usable, and aligned with user goals.
+
+## Database Design
+
+Key entities, important fields, and relationships:
+
+- Users
+  - id (PK)
+  - email (unique)
+  - password_hash
+  - full_name
+  - created_at
+  - Relationships: a user can own multiple properties, create multiple bookings, write multiple reviews, and make payments.
+
+- Properties
+  - id (PK)
+  - owner_id (FK → Users.id)
+  - title
+  - description
+  - address (structured: street, city, state, country, zip)
+  - price_per_night
+  - Relationships: a property belongs to one owner (User), has many bookings, reviews, images, and amenities.
+
+- Bookings
+  - id (PK)
+  - user_id (FK → Users.id)
+  - property_id (FK → Properties.id)
+  - start_date
+  - end_date
+  - total_price
+  - status (pending/confirmed/cancelled)
+  - Relationships: a booking belongs to one user and one property; may have one or more payments.
+
+- Reviews
+  - id (PK)
+  - user_id (FK → Users.id)
+  - property_id (FK → Properties.id)
+  - rating (e.g., 1-5)
+  - comment
+  - created_at
+  - Relationships: a review belongs to one user and one property.
+
+- Payments
+  - id (PK)
+  - booking_id (FK → Bookings.id)
+  - user_id (FK → Users.id)
+  - amount
+  - currency
+  - status (pending/paid/refunded)
+  - provider_reference (external payment id)
+  - Relationships: a payment is linked to a booking and the user who paid.
+
+Notes / recommendations
+- Indexes: add indexes on Users.email, Properties.owner_id, Bookings.property_id and user_id, Reviews.property_id for fast lookups.
+- Constraints: enforce FK constraints and use transactions for booking/payment workflows to maintain consistency.
+- Normalization: keep address components and amenity list normalized (separate tables) if needed for queries and reuse.
+- Soft deletes & audit: consider soft-delete flags and created/updated timestamps for auditability.
